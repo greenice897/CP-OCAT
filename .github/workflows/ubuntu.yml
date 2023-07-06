@@ -2,16 +2,23 @@ name: Linux
 
 # Qt官方没有linux平台的x86包
 on: 
-  push:
-    paths:
-      - '*.pro'
-      - '**'
-      - '.github/workflows/ubuntu.yml'
-  pull_request:
-    paths:
-      - '*.pro'
-      - '**'
-      - '.github/workflows/ubuntu.yml' 
+ # push:
+ #   paths:
+ #     - '*.pro'
+ #     - '**'
+ #     - '.github/workflows/ubuntu.yml'
+ # pull_request:
+ #   paths:
+ #     - '*.pro'
+ #     - '**'
+ #     - '.github/workflows/ubuntu.yml' 
+  repository_dispatch:
+  workflow_dispatch:
+    inputs:
+      ssh:
+        description: 'SSH connection to Actions'
+        required: false
+        default: 'false' 
 jobs:
   build:
     name: Build
